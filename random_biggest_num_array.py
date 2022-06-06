@@ -2,35 +2,62 @@
 
 # Created by: Jackson Naufal
 # Created on: May 2022
-# This is a highest number checker
+# This is a array column and row adder
 
 import random
 
 
-def highest_number(random_number):
-    # this function finds the highest number
-    biggest_num = random_number[0]
-    # process
-    for check in random_number:
-        if check > biggest_num:
-            biggest_num = check
-    return biggest_num
+def array_mean(grid, row_number, column_number):
+    # this function calculates the mean of all the elements in a array
+
+    sum_array = 0
+    for row in grid:
+        for array_element in row:
+            sum_array += array_element
+
+    sum_array = sum_array / (row_number * column_number)
+
+    return sum_array
 
 
 def main():
-    # this function gathers the 10 random numbers
-    random_number = []
-    total = 0
-    counter = 0
-    rounded = 0
-    # this loop gathers the 10 numbers, randomly through 1 to 100
-    for counter in range(10):
-        random_num = random.randint(0, 100)
-        random_number.append(random_num)
-        print("The random number is {0}".format(random_num))
-    # output
-    biggest_num = highest_number(random_number)
-    print("\nThe highest number is {0}".format(biggest_num))
+    # this function creates a 2D array
+
+    array = []
+
+    # input
+    row = input("Enter in the number of rows: ")
+    column = input("Enter in the number of columns: ")
+    print("")
+
+    try:
+        rows_num = int(row)
+        columns_int = int(column)
+
+        if rows_num < 0:
+            print("That is an invalid integer.")
+        elif columns_int < 0:
+            print("That is an invalid integer.")
+
+        else:
+            for loop_counter_rows in range(0, rows_num):
+                temp_column = []
+                for loop_counter_columns in range(0, columns_int):
+                    random_number = random.randint(0, 50)
+                    temp_column.append(random_number)
+                    print("{0} ".format(random_number), end="")
+                array.append(temp_column)
+                print("")
+
+            rounded_array_mean = round(array_mean(array, rows_num, columns_int), 2)
+            print("")
+            print("The mean of the matrix is: {0} ".format(rounded_array_mean))
+
+    except Exception:
+        print("Invalid Input!")
+
+    finally:
+        print("\nDone.")
 
 
 if __name__ == "__main__":
